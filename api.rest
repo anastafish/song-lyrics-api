@@ -1,0 +1,8 @@
+POST http://127.0.0.1:5000/api
+content-type: application/json
+
+{
+    "url": "https://www.youtube.com/shorts/GiyPp5G9a7s"
+}
+
+
