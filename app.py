@@ -5,6 +5,8 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
+api_key = os.getenv('API_KEY')
+
 def downloadAudio(url):
     yt = YouTube(url) 
     title = yt.title
@@ -26,7 +28,7 @@ def downloadAudio(url):
 @app.route('/api', methods=['POST'])
 def api_endpoint():
     # Load your API key from an environment variable or secret management service
-    openai.api_key = "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"
+    openai.api_key = api_key
     file_info = downloadAudio(request.get_data().decode('ISO-8859-1'))
     audio_file= open(file_info['file'], "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file)
